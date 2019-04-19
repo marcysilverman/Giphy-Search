@@ -1,25 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import SearchBar from './components/SearchBar';
+import GiftList from './components/GifList';
+import request from 'superagent';
 
-class App extends Component {
+class App extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+          gifs: [
+    
+        ]
+      }
+    };
+
+  handleTermChange = (term) => {
+    const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&key=ZSH6eZC3KxMwJPfA9EVEN6gEfIm5KB48&limit=5`
+    request.get(url, (err, res) => {
+      this.setState({ gifs: res.body.data })
+    });
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+    return (  
+      <div>
+        <SearchBar onChange={this.handleTermChange} />
+        <GiftList gifs={this.state.gifs} />
       </div>
     );
   }
