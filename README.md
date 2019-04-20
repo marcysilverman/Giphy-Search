@@ -1,1 +1,1 @@
-![Image description]('https://github.com/marcysilverman/Giphy-Search/blob/master/screencapture-localhost-3001-2019-04-19-20_18_43.png');
+![alt text]('https://github.com/marcysilverman/Giphy-Search/blob/master/screencapture-localhost-3001-2019-04-19-20_18_43.png');
